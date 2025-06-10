@@ -12,7 +12,10 @@ jobs:
           
     steps:
     - uses: actions/checkout@v4
-    - run: echo ${{ github.repository }}
+    - run: |
+        echo ${{ github.repository }}
+        echo "New issue: ${{ github.event.issue.title }}"
+        echo "New issue: $(id)"
 
     - name: Set up Python
       uses: actions/setup-python@v5
