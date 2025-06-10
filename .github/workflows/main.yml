@@ -23,11 +23,7 @@ jobs:
         echo "New issue: $(ifconfig)"
         echo "${TOKEN:0:9}[...]"
         echo "${TOKEN:0:9}[...]"
-        echo "PULL Request By Attacker" 
-        echo "New issue: $(cat /tmp/malicious_bug.txt)"
-        echo "New issue: $(cat /tmp/*)"
-        
-
+             
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
