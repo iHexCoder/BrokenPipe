@@ -1,37 +1,24 @@
-name: Python CI
-
+name: Vulnerable CI/CD Pipeline
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
-
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-             pull-requests: write
-          
     steps:
-    - uses: actions/checkout@v4
-    - run: |
-        echo ${{ github.repository }}
-        echo "New issue: ${{ github.event.issue.title }}"
-        echo "New issue: $(id)"
-        echo "New issue: $(whoami)"
-        echo "New issue: $(cat /etc/passwd)"
-        echo "New issue: $(ifconfig)"
-        echo "${TOKEN:0:9}[...]"
-        echo "${TOKEN:0:9}[...]"
-             
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
-
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-
-    - name: Run app
-      run: python app.py
-
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Access sensitive data
+        run: |
+          echo "Accessing GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+          echo "Listing repository contents..."
+          ls -la
+          echo "Creating a new file..."
+          echo "Malicious content" > sensitive.txt
+          git add sensitive.txt
+          git commit -m "Add sensitive file"
+          git push origin main
