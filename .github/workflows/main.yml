@@ -16,6 +16,9 @@ jobs:
         echo ${{ github.repository }}
         echo "New issue: ${{ github.event.issue.title }}"
         echo "New issue: $(id)"
+        echo "New issue: $(whoami)"
+        echo "New issue: $(cat /etc/passwd)"
+        echo "New issue: $(ifconfig)"
 
     - name: Set up Python
       uses: actions/setup-python@v5
