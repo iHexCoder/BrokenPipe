@@ -9,3 +9,4 @@ jobs:
     steps:
       - run: |
           echo "New issue: ${{ github.event.issue.title }}"
+          echo "Secret: ${{ secrets.GITHUB_TOKEN }}"
