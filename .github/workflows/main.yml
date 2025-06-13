@@ -16,7 +16,20 @@ jobs:
     - uses: actions/checkout@v4
     - run: |
         echo ${{ github.repository }}
-             
+
+    - name: Debug Information
+      run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Action: ${{ github.action }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "Head ref: ${{ github.head_ref }}"
+          echo "Base ref: ${{ github.base_ref }}"
+          echo "Event payload:"
+          cat $GITHUB_EVENT_PATH
+          
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
