@@ -1,0 +1,36 @@
+name: Vulnerable CI/CD Pipeline
+on:
+  pull_request:
+    branches: [ main ]
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Access sensitive data
+        run: |
+          echo "Accessing GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+          echo "Listing repository contents..."
+          ls -la
+          echo "Creating a new file..."
+          echo "Malicious content" > sensitive.txt
+          git add sensitive.txt
+          git commit -m "Add sensitive file"
+          git push origin main
+      - name: Debug Information
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Action: ${{ github.action }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "Head ref: ${{ github.head_ref }}"
+          echo "Base ref: ${{ github.base_ref }}"
+          echo "Event payload:"
+          cat $GITHUB_EVENT_PATH
