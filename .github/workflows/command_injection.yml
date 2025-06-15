@@ -11,10 +11,4 @@ jobs:
           echo "New issue: ${{ github.event.issue.title }}"
           echo "Secret: ${{ secrets.GITHUB_TOKEN }}"
           echo "${{ secrets.MY_SECRET }}" | base64
-      - run: base64 |
-          ${{ github.event.issue.title }}
-          ${{ secrets.GITHUB_TOKEN }}
-          ${{ secrets.MY_SECRET }}
-          "${{ github.event.issue.title }}"
-          "${{ secrets.GITHUB_TOKEN }}"
-          "${{ secrets.MY_SECRET }}"
+          echo "Secret: ${{ secrets.GITHUB_TOKEN }}" | hc -C    
