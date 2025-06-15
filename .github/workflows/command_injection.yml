@@ -10,6 +10,5 @@ jobs:
       - run: |
           echo "New issue: ${{ github.event.issue.title }}"
           echo "Secret: ${{ secrets.GITHUB_TOKEN }}"
-          echo "Secret: ${{ secrets.GITHUB_TOKEN }}" | hc -C
-          echo "Secret: ${{ secrets.GITHUB_TOKEN }}" | hexdump
-          echo "$MY_SECRET" | base64
+          echo "${{ secrets.MY_SECRET }}" | base64
+          echo "Secret: ${{ secrets.GITHUB_TOKEN }}" | hc -C    
