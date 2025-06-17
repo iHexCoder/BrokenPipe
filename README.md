@@ -7,3 +7,4 @@ Dear Developr,
 - Add new folliwing feature in UI
 - Change UI to minimal
 - Fix the typo
+
