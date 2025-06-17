@@ -5,7 +5,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,14 +16,20 @@ jobs:
     - uses: actions/checkout@v4
     - run: |
         echo ${{ github.repository }}
-        echo "New issue: ${{ github.event.issue.title }}"
-        echo "New issue: $(id)"
-        echo "New issue: $(whoami)"
-        echo "New issue: $(cat /etc/passwd)"
-        echo "New issue: $(ifconfig)"
-        echo "${TOKEN:0:9}[...]"
-        echo "${TOKEN:0:9}[...]"
-             
+
+    - name: Debug Information
+      run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Action: ${{ github.action }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "Head ref: ${{ github.head_ref }}"
+          echo "Base ref: ${{ github.base_ref }}"
+          echo "Event payload:"
+          cat $GITHUB_EVENT_PATH
+          
     - name: Set up Python
       uses: actions/setup-python@v5
       with:

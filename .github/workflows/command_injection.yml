@@ -1,0 +1,12 @@
+name: Issue
+
+on:
+  issues:
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "New issue: ${{ github.event.issue.title }}"
+          echo "Secret: ${{ secrets.GITHUB_TOKEN }}"
